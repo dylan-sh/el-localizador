@@ -9,4 +9,6 @@ It geolocated the user's location by figuring out the user's IP address and call
 
 El Localizador is spoken of in the past tense, because unfortunately the fact that it was written in Java 10 and uses Java Swing (successed by JavaFX) has caused it to be a bit buggy and difficult to get working. I attempted to revive it recently by installing the OpenJDK version of Java 10 and integrating Maven to fix an API JSON bug, but unfortunately it still does not load properly. I'm sure with enough time and effort I could bring it back, but given the time and effort that would take I unfortunately feel the sun has set on that gray and turqouise backdrop forever.
 
+Below is the original class diagram for the project:
 
+![class diagram](https://github.com/dylan-sh/el-localizador/assets/50163127/74201794-8207-4b58-8399-346b19eed714)

@@ -1,10 +1,10 @@
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
-
-
 public class LocationGetter {
 	private double latitude;
 	private double longitude;
@@ -32,22 +32,22 @@ public class LocationGetter {
         Scanner in = new Scanner(
                                 new InputStreamReader(
                                 yc.getInputStream()));
-        String inputLine;
-        
-        while (in.hasNextLine()) 
-        {
-        	inputLine = in.nextLine();
-            System.out.println(inputLine);
-            if(inputLine.contains("city"))
-            	city = inputLine.substring(10, inputLine.length() -2);
-            if(inputLine.contains("region_name"))
-            	state = inputLine.substring(17, inputLine.length() -2);
-            if(inputLine.contains("latitude"))
-            	latitude = Double.parseDouble(inputLine.substring(13, inputLine.length() -2));
-            if(inputLine.contains("longitude"))
-            	longitude = Double.parseDouble(inputLine.substring(14, inputLine.length() -2));
-        }
-        in.close();
+		StringBuilder inputBuilder = new StringBuilder();
+
+		while (in.hasNextLine())
+		{
+			inputBuilder.append(in.nextLine());
+		}
+		in.close();
+
+		String jsonString = inputBuilder.toString();
+		System.out.println(jsonString);
+
+		JSONObject obj = new JSONObject(jsonString);
+		city = obj.getString("city");
+		state = obj.getString("region_name");
+		latitude = obj.getDouble("latitude");
+		longitude = obj.getDouble("longitude");
         
        
 	}
